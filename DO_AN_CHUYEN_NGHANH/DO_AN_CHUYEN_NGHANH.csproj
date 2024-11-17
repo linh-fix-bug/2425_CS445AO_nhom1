@@ -89,11 +89,48 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\responsive.css" />
+    <Content Include="css\slick-theme.css" />
+    <Content Include="css\slick.css" />
+    <Content Include="css\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="images\about-img.jpg" />
+    <Content Include="images\about-img.png" />
+    <Content Include="images\b1.jpg" />
+    <Content Include="images\b2.jpg" />
+    <Content Include="images\b3.jpg" />
+    <Content Include="images\blog-img1.jpg" />
+    <Content Include="images\blog-img2.jpg" />
+    <Content Include="images\client.jpg" />
+    <Content Include="images\decoration-img.png" />
+    <Content Include="images\f1.png" />
+    <Content Include="images\f2.png" />
+    <Content Include="images\f3.png" />
+    <Content Include="images\f4.png" />
+    <Content Include="images\f5.png" />
+    <Content Include="images\f6.png" />
+    <Content Include="images\fevicon.png" />
+    <Content Include="images\menu.png" />
+    <Content Include="images\offer-img.png" />
+    <Content Include="images\search-icon.png" />
+    <Content Include="images\slider-bg.jpg" />
+    <Content Include="images\slider-bg2.jpg" />
+    <Content Include="images\slider-img.png" />
+    <Content Include="images\slider-img1.png" />
+    <Content Include="images\slider-img2.png" />
+    <Content Include="images\slider-img3.png" />
+    <Content Include="images\user.png" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\custom.js" />
+    <Content Include="js\jquery-3.4.1.min.js" />
+    <Content Include="js\slick.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -102,6 +139,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="css\style.css.map" />
+    <Content Include="css\style.scss" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\octin_sports_rg.ttf" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -116,6 +159,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\About\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

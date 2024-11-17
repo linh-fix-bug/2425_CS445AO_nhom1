@@ -6,13 +6,12 @@ using System.Web.Mvc;
 
 namespace DO_AN_CHUYEN_NGHANH.Controllers
 {
-    public class HomeController : Controller
+    public class AboutController : Controller
     {
-        // GET: Home
+        // GET: About
         public ActionResult Index()
         {
             return View();
         }
-       
     }
 }
