@@ -104,16 +104,16 @@
     <Content Include="images\blog-img1.jpg" />
     <Content Include="images\blog-img2.jpg" />
     <Content Include="images\client.jpg" />
+    <Content Include="images\cobancong.jpg" />
     <Content Include="images\decoration-img.png" />
-    <Content Include="images\f1.png" />
-    <Content Include="images\f2.png" />
-    <Content Include="images\f3.png" />
-    <Content Include="images\f4.png" />
-    <Content Include="images\f5.png" />
-    <Content Include="images\f6.png" />
     <Content Include="images\fevicon.png" />
     <Content Include="images\menu.png" />
     <Content Include="images\offer-img.png" />
+    <Content Include="images\phong1nguoi.jpg" />
+    <Content Include="images\phong2nguoi.jpg" />
+    <Content Include="images\phongcaocap.jpg" />
+    <Content Include="images\phongtheogio.jpg" />
+    <Content Include="images\phongVIP1.jpg" />
     <Content Include="images\search-icon.png" />
     <Content Include="images\slider-bg.jpg" />
     <Content Include="images\slider-bg2.jpg" />
@@ -131,7 +131,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,10 +149,12 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\octin_sports_rg.ttf" />
     <None Include="packages.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Room\Index.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Shared\LayoutUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
