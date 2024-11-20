@@ -1,4 +1,4 @@
-﻿
+﻿@model List<DO_AN_CHUYEN_NGHANH.Models.Phong>
 @{
     Layout = "~/Views/Shared/LayoutUser.cshtml";
 }
@@ -105,7 +105,7 @@
     </div>
 </section>
 <!-- end slider section -->
-    </div>
+    
 
 <!-- furniture section -->
 
@@ -119,232 +119,42 @@
                 Dễ dàng quản lý thông tin phòng trọ, tình trạng thuê, giá cả và các tiện ích liên quan.
             </p>
         </div>
+        <div class="filter-menu">
+            <button class="filter-btn active" data-floor="1">Tầng 1</button>
+            <button class="filter-btn" data-floor="2">Tầng 2</button>
+            <button class="filter-btn" data-floor="3">Tầng 3</button>
+            <button class="filter-btn" data-floor="0">Tất cả</button>
+        </div>
         <div class="row">
             <div class="col-md-6 col-lg-4">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="~/images/phong1nguoi.jpg" />
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Phòng Đơn
-                        </h5>
-                        <div class="price_box">
-                            <h6 class="price_heading">
-                                <span>Giá:</span> 1.500.000 VNĐ/tháng
-                            </h6>
-                            <a href="">
-                                Chi Tiết
-                            </a>
+                @foreach (var item in Model)
+                {
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="@item.HinhAnh" alt="Phòng Đơn" />
+                        </div>
+                        <div class="detail-box">
+                            <p><strong>Mã Phòng:</strong>@item.MaPhong</p>
+                            <p><strong>Mô Tả:</strong>@item.MoTa</p>
+                            <p><strong>Tình Trạng:</strong>@item.TinhTrang</p>
+                            <p><strong>Ghi Chú:</strong>@item.GhiChu</p>
+                            <p><strong>Tầng:</strong>@item.Tang</p>
+                            <div class="price_box">
+                                <h6 class="price_heading">
+                                    <span>Giá:</span> 1.500.000 VNĐ/tháng
+                                </h6>
+                                <a href="">
+                                    Chi Tiết
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="~/images/phong2nguoi.jpg" />
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Phòng Đôi
-                        </h5>
-                        <div class="price_box">
-                            <h6 class="price_heading">
-                                <span>Giá:</span> 2.500.000 VNĐ/tháng
-                            </h6>
-                            <a href="">
-                                Chi Tiết
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="~/images/phongcaocap.jpg" />
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Phòng Cao Cấp
-                        </h5>
-                        <div class="price_box">
-                            <h6 class="price_heading">
-                                <span>Giá:</span> 4.000.000 VNĐ/tháng
-                            </h6>
-                            <a href="">
-                                Chi Tiết
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="~/images/phongtheogio.jpg" />
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Phòng Theo Giờ
-                        </h5>
-                        <div class="price_box">
-                            <h6 class="price_heading">
-                                <span>Giá:</span> 50.000 VNĐ/giờ
-                            </h6>
-                            <a href="">
-                                Chi Tiết
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="~/images/phongVIP1.jpg" />
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Phòng VIP
-                        </h5>
-                        <div class="price_box">
-                            <h6 class="price_heading">
-                                <span>Giá:</span> 6.000.000 VNĐ/tháng
-                            </h6>
-                            <a href="">
-                                Chi Tiết
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="~/images/cobancong.jpg" />
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Phòng Có Sân Ban Công
-                        </h5>
-                        <div class="price_box">
-                            <h6 class="price_heading">
-                                <span>Giá:</span> 3.500.000 VNĐ/tháng
-                            </h6>
-                            <a href="">
-                                Chi Tiết
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
 </section>
 
-<!-- end furniture section -->
-<!-- about section -->
-
-<section class="about_section layout_padding long_section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="img-box">
-                    <img src="~/images/about-img.png" alt="">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="detail-box">
-                    <div class="heading_container">
-                        <h2>
-                            About Us
-                        </h2>
-                    </div>
-                    <p>
-                        Chúng tôi cung cấp giải pháp quản lý phòng trọ chuyên nghiệp và hiệu quả. Với hệ thống hiện đại, bạn có thể dễ dàng theo dõi thông tin phòng, tình trạng thuê, chi phí và hỗ trợ khách hàng nhanh chóng. Sứ mệnh của chúng tôi là mang đến sự tiện lợi và minh bạch trong việc quản lý và vận hành các hệ thống phòng trọ.
-                    </p>
-                    <a href="">
-                        Tìm Hiểu Thêm
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- end about section -->
-<!-- blog section -->
-
-<section class="blog_section layout_padding">
-    <div class="container">
-        <div class="heading_container">
-            <h2>
-                Bài Viết Mới Nhất
-            </h2>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-4 mx-auto">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="images/b1.jpg" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Hướng Dẫn Quản Lý Phòng Trọ Hiệu Quả
-                        </h5>
-                        <p>
-                            Tìm hiểu các cách tổ chức thông tin, theo dõi tình trạng phòng và cải thiện dịch vụ cho người thuê.
-                        </p>
-                        <a href="">
-                            Tìm Hiểu Thêm
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mx-auto">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="images/b2.jpg" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Cách Giảm Thiểu Chi Phí Quản Lý Phòng Trọ
-                        </h5>
-                        <p>
-                            Những mẹo hay giúp bạn tối ưu chi phí và nâng cao lợi nhuận trong việc quản lý phòng trọ.
-                        </p>
-                        <a href="">
-                            Tìm Hiểu Thêm
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mx-auto">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="images/b3.jpg" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Xu Hướng Phòng Trọ Hiện Đại Năm 2024
-                        </h5>
-                        <p>
-                            Khám phá các mẫu phòng trọ hiện đại với tiện ích cao cấp và phù hợp với nhu cầu hiện nay.
-                        </p>
-                        <a href="">
-                            Tìm Hiểu Thêm
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- end blog section -->
-<!-- client section -->
 
 <section class="client_section layout_padding-bottom">
     <div class="container">
