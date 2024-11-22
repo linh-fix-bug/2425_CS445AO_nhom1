@@ -13,10 +13,10 @@ namespace DO_AN_CHUYEN_NGHANH.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QUANLYTROEntities : DbContext
+    public partial class QUANLYPHONGTROEntities : DbContext
     {
-        public QUANLYTROEntities()
-            : base("name=QUANLYTROEntities")
+        public QUANLYPHONGTROEntities()
+            : base("name=QUANLYPHONGTROEntities")
         {
         }
     
@@ -26,5 +26,6 @@ namespace DO_AN_CHUYEN_NGHANH.Models
         }
     
         public virtual DbSet<Phong> Phongs { get; set; }
+        public virtual DbSet<Tang> Tangs { get; set; }
     }
 }

@@ -12,9 +12,16 @@ namespace DO_AN_CHUYEN_NGHANH.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            QUANLYTROEntities db = new QUANLYTROEntities();
+            QUANLYPHONGTROEntities db = new QUANLYPHONGTROEntities();
             var danhsachPhong = db.Phongs.ToList();
             return View(danhsachPhong);
+        }
+        
+        public ActionResult Timkiem(int? idTang)
+        {
+            ViewBag.idTang = idTang;    
+            Map tang = new Map();
+            return View(tang.DanhSachTheoTang(idTang));
         }
        
     }

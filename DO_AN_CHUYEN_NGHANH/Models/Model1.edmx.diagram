@@ -4,8 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5f36fb40435646eda9475ed391e93357" Name="Diagram1">
-        <EntityTypeShape EntityType="QUANLYTROModel.Phong" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="f89e31944592418a85c4e89eb7c0614b" Name="Diagram1">
+        <EntityTypeShape EntityType="QUANLYPHONGTROModel.Phong" Width="2" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYPHONGTROModel.Tang" Width="1.5" PointX="0.75" PointY="5.25" />
+        <AssociationConnector Association="QUANLYPHONGTROModel.FK__Phong__Tang__398D8EEE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,55 +4,115 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QUANLYTROModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QUANLYPHONGTROModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Phong">
           <Key>
             <PropertyRef Name="MaPhong" />
           </Key>
           <Property Name="MaPhong" Type="int" Nullable="false" />
           <Property Name="HinhAnh" Type="varchar" MaxLength="255" />
-          <Property Name="MoTa" Type="text" />
-          <Property Name="TinhTrang" Type="varchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="255" />
+          <Property Name="TinhTrang" Type="nvarchar" MaxLength="255" />
           <Property Name="GhiChu" Type="nvarchar" MaxLength="255" />
+          <Property Name="Gia" Type="decimal" Precision="10" Scale="0" />
           <Property Name="Tang" Type="int" />
         </EntityType>
-        <EntityContainer Name="QUANLYTROModelStoreContainer">
+        <EntityType Name="Tang">
+          <Key>
+            <PropertyRef Name="SoTang" />
+          </Key>
+          <Property Name="SoTang" Type="int" Nullable="false" />
+          <Property Name="SoLuongPhong" Type="int" />
+        </EntityType>
+        <Association Name="FK__Phong__Tang__398D8EEE">
+          <End Role="Tang" Type="Self.Tang" Multiplicity="0..1" />
+          <End Role="Phong" Type="Self.Phong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tang">
+              <PropertyRef Name="SoTang" />
+            </Principal>
+            <Dependent Role="Phong">
+              <PropertyRef Name="Tang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYPHONGTROModelStoreContainer">
           <EntitySet Name="Phong" EntityType="Self.Phong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tang" EntityType="Self.Tang" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Phong__Tang__398D8EEE" Association="Self.FK__Phong__Tang__398D8EEE">
+            <End Role="Tang" EntitySet="Tang" />
+            <End Role="Phong" EntitySet="Phong" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QUANLYTROModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="QUANLYPHONGTROModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Phong">
           <Key>
             <PropertyRef Name="MaPhong" />
           </Key>
           <Property Name="MaPhong" Type="Int32" Nullable="false" />
           <Property Name="HinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MoTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TinhTrang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Gia" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="Tang" Type="Int32" />
+          <NavigationProperty Name="Tang1" Relationship="QUANLYPHONGTROModel.FK__Phong__Tang__398D8EEE" FromRole="Phong" ToRole="Tang" />
         </EntityType>
-        <EntityContainer Name="QUANLYTROEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QUANLYPHONGTROEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Phongs" EntityType="Self.Phong" />
+          <EntitySet Name="Tangs" EntityType="QUANLYPHONGTROModel.Tang" />
+          <AssociationSet Name="FK__Phong__Tang__398D8EEE" Association="QUANLYPHONGTROModel.FK__Phong__Tang__398D8EEE">
+            <End Role="Tang" EntitySet="Tangs" />
+            <End Role="Phong" EntitySet="Phongs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Tang">
+          <Key>
+            <PropertyRef Name="SoTang" />
+          </Key>
+          <Property Name="SoTang" Type="Int32" Nullable="false" />
+          <Property Name="SoLuongPhong" Type="Int32" />
+          <NavigationProperty Name="Phongs" Relationship="QUANLYPHONGTROModel.FK__Phong__Tang__398D8EEE" FromRole="Tang" ToRole="Phong" />
+        </EntityType>
+        <Association Name="FK__Phong__Tang__398D8EEE">
+          <End Type="QUANLYPHONGTROModel.Tang" Role="Tang" Multiplicity="0..1" />
+          <End Type="QUANLYPHONGTROModel.Phong" Role="Phong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tang">
+              <PropertyRef Name="SoTang" />
+            </Principal>
+            <Dependent Role="Phong">
+              <PropertyRef Name="Tang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QUANLYTROModelStoreContainer" CdmEntityContainer="QUANLYTROEntities">
+        <EntityContainerMapping StorageEntityContainer="QUANLYPHONGTROModelStoreContainer" CdmEntityContainer="QUANLYPHONGTROEntities">
           <EntitySetMapping Name="Phongs">
-            <EntityTypeMapping TypeName="QUANLYTROModel.Phong">
+            <EntityTypeMapping TypeName="QUANLYPHONGTROModel.Phong">
               <MappingFragment StoreEntitySet="Phong">
                 <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
                 <ScalarProperty Name="MoTa" ColumnName="MoTa" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
                 <ScalarProperty Name="Tang" ColumnName="Tang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tangs">
+            <EntityTypeMapping TypeName="QUANLYPHONGTROModel.Tang">
+              <MappingFragment StoreEntitySet="Tang">
+                <ScalarProperty Name="SoLuongPhong" ColumnName="SoLuongPhong" />
+                <ScalarProperty Name="SoTang" ColumnName="SoTang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

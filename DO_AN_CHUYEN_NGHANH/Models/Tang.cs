@@ -12,16 +12,18 @@ namespace DO_AN_CHUYEN_NGHANH.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Phong
+    public partial class Tang
     {
-        public int MaPhong { get; set; }
-        public string HinhAnh { get; set; }
-        public string MoTa { get; set; }
-        public string TinhTrang { get; set; }
-        public string GhiChu { get; set; }
-        public Nullable<decimal> Gia { get; set; }
-        public Nullable<int> Tang { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tang()
+        {
+            this.Phongs = new HashSet<Phong>();
+        }
     
-        public virtual Tang Tang1 { get; set; }
+        public int SoTang { get; set; }
+        public Nullable<int> SoLuongPhong { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Phong> Phongs { get; set; }
     }
 }
