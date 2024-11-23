@@ -10,7 +10,6 @@ namespace DO_AN_CHUYEN_NGHANH.Models
         public List<Tang> dsTang()
         {
             QUANLYPHONGTROEntities db = new QUANLYPHONGTROEntities(); 
-
             return db.Tangs.ToList();
         }
     }

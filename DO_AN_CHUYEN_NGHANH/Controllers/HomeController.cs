@@ -16,13 +16,41 @@ namespace DO_AN_CHUYEN_NGHANH.Controllers
             var danhsachPhong = db.Phongs.ToList();
             return View(danhsachPhong);
         }
-        
-        public ActionResult Timkiem(int? idTang)
+
+        public ActionResult Timkiem(int? idTang, int? idGia)
         {
-            ViewBag.idTang = idTang;    
+            ViewBag.idTang = idTang; 
+            ViewBag.idGia = idGia;   
+
             Map tang = new Map();
-            return View(tang.DanhSachTheoTang(idTang));
+            var danhSachPhong = tang.DanhSach(); 
+
+            
+            if (idTang != null && idTang != 0)
+            {
+                danhSachPhong = danhSachPhong.Where(p => p.Tang == idTang).ToList();
+            }
+            
+            if (idGia != null && idGia != 0)
+            {
+                switch (idGia)
+                {
+                    case 1: // 1-2 triệu
+                        danhSachPhong = danhSachPhong.Where(p => p.Gia >= 1000000 && p.Gia < 2000000).ToList();
+                        break;
+                    case 2: // 2-3 triệu
+                        danhSachPhong = danhSachPhong.Where(p => p.Gia >= 2000000 && p.Gia < 3000000).ToList();
+                        break;
+                    case 3: // 3-4 triệu
+                        danhSachPhong = danhSachPhong.Where(p => p.Gia >= 3000000 && p.Gia <= 4000000).ToList();
+                        break;
+                }
+            }
+
+            return View(danhSachPhong); // Trả về danh sách phòng sau khi lọc
         }
-       
+
+
+
     }
 }

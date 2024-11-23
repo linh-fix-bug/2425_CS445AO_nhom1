@@ -1,10 +1,7 @@
 ﻿@model List<DO_AN_CHUYEN_NGHANH.Models.Phong>
 @{
     Layout = "~/Views/Shared/LayoutUser.cshtml";
-
-
 }
-
 <section class="slider_section long_section">
     <div id="customCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -106,10 +103,7 @@
         </ol>
     </div>
 </section>
-<!-- end slider section -->
 
-
-<!-- furniture section -->
 
 <section class="furniture_section layout_padding">
     <div class="container">
@@ -124,22 +118,27 @@
         <form action="~/Home/Timkiem" method="get">
             <div class="filter-dropdown">
                 <label for="floor-filter">Lọc:</label>
+                <!-- Dropdown chọn tầng -->
                 <select id="floor-filter" class="form-select" name="idTang">
-                    <option value="0">Tất cả</option>
+                    <option value="0" @(ViewBag.idTang == null || ViewBag.idTang == 0 ? "selected" : "")>Tất cả tầng</option>
                     @foreach (var item in new DO_AN_CHUYEN_NGHANH.Models.MapTang().dsTang())
                     {
-                        <option value="@item.SoTang">Tầng @item.SoTang</option>
-                    }                    
+                        <option value="@item.SoTang" @(ViewBag.idTang == item.SoTang ? "selected" : "")>Tầng @item.SoTang</option>
+                    }
                 </select>
-                <select id="floor-filter" class="form-select" name="idGia">
-                    <option value="0">Tất cả</option>
-                    <option value="1">1-2 triệu</option>
-                    <option value="2">2-3 triệu</option>
-                    <option value="3">3-4 triệu</option>
+
+                <!-- Dropdown chọn giá -->
+                <select id="price-filter" class="form-select" name="idGia">
+                    <option value="0" @(ViewBag.idGia == null || ViewBag.idGia == 0 ? "selected" : "")>Tất cả giá</option>
+                    <option value="1" @(ViewBag.idGia == 1 ? "selected" : "")>1-2 triệu</option>
+                    <option value="2" @(ViewBag.idGia == 2 ? "selected" : "")>2-3 triệu</option>
+                    <option value="3" @(ViewBag.idGia == 3 ? "selected" : "")>3-4 triệu</option>
                 </select>
-                <button>Tìm kiếm</button>
+                <!-- Nút Tìm kiếm -->
+                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
             </div>
         </form>
+
 
         <div class="row">
             @foreach (var item in Model)
@@ -157,16 +156,16 @@
                             <p><strong>Ghi Chú: </strong>@item.GhiChu</p>
                             <p><strong>Tầng: </strong>@item.Tang</p>
                             <p><strong>Giá phòng: </strong>@item.Gia</p>
-                            <div class="price_box">                                
+                            <div class="price_box">
                                 <a href="">
                                     Chi Tiết
                                 </a>
                             </div>
                         </div>
-                    </div>                   
+                    </div>
                 </div>
             }
-            </div>
+        </div>
     </div>
 </section>
 

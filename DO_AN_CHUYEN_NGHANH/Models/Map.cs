@@ -15,6 +15,13 @@ namespace DO_AN_CHUYEN_NGHANH.Models
                         select phong).ToList();
             return data;
         }
+        public List<Phong> DanhSach()
+        {
+            QUANLYPHONGTROEntities ds = new QUANLYPHONGTROEntities();
+            var data = (from phong in ds.Phongs                        
+                        select phong).ToList();
+            return data;
+        }
 
     }
 }

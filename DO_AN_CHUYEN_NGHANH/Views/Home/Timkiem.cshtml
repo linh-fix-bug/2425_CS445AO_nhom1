@@ -13,49 +13,52 @@
                 Dễ dàng quản lý thông tin phòng trọ, tình trạng thuê, giá cả và các tiện ích liên quan.
             </p>
         </div>
-        <div class="filter-dropdown">
-            <label for="floor-filter">Lọc:</label>
-            <select id="floor-filter" class="form-select" name="idTang">
-                <option>Tất cả</option>
-                @foreach (var item in new DO_AN_CHUYEN_NGHANH.Models.MapTang().dsTang())
-                {
-                    <option value="@item.SoTang" @Html.Raw(item.SoTang == ViewBag.idTang?"selected":"")>Tầng @item.SoTang</option>
-                }
-            </select>
-            <select id="floor-filter" class="form-select" name="idGia">
-                <option value="0">Tất cả</option>
-                <option value="1">1-2 triệu</option>
-                <option value="2">2-3 triệu</option>
-                <option value="3">3-4 triệu</option>
-            </select>
-            <button>Tìm kiếm</button>
-        </div>
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-6 col-lg-4">
+        <form action="~/Home/Timkiem" method="get">
+            <div class="filter-dropdown">
+                <label for="floor-filter">Lọc:</label>
+                <select id="floor-filter" class="form-select" name="idTang">
+                    <option value="0">Tất cả</option>
+                    @foreach (var item in new DO_AN_CHUYEN_NGHANH.Models.MapTang().dsTang())
+                    {
+                        <option value="@item.SoTang" @Html.Raw(item.SoTang == ViewBag.idTang ? "selected" : "")>Tầng @item.SoTang</option>
 
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="@item.HinhAnh" alt="Phòng Đơn" />
-                        </div>
-                        <div class="detail-box">
-                            <p><strong>Mã Phòng: </strong>@item.MaPhong</p>
-                            <p><strong>Mô Tả: </strong>@item.MoTa</p>
-                            <p><strong>Tình Trạng: </strong>@item.TinhTrang</p>
-                            <p><strong>Ghi Chú: </strong>@item.GhiChu</p>
-                            <p><strong>Tầng: </strong>@item.Tang</p>
-                            <p><strong>Giá phòng: </strong>@item.Gia</p>
-                            <div class="price_box">
-                                <a href="">
-                                    Chi Tiết
-                                </a>
+                    }
+                </select>
+                <select id="price-filter" class="form-select" name="idGia">
+                    <option value="0" @(ViewBag.idGia == null || ViewBag.idGia == 0 ? "selected" : "")>Tất cả giá</option>
+                    <option value="1" @(ViewBag.idGia == 1 ? "selected" : "")>1-2 triệu</option>
+                    <option value="2" @(ViewBag.idGia == 2 ? "selected" : "")>2-3 triệu</option>
+                    <option value="3" @(ViewBag.idGia == 3 ? "selected" : "")>3-4 triệu</option>
+                </select>
+                <button>Tìm kiếm</button>
+            </div>
+            </form>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-lg-4">
+
+                        <div class="box">
+                            <div class="img-box">
+                                <img src="@item.HinhAnh" alt="Phòng Đơn" />
+                            </div>
+                            <div class="detail-box">
+                                <p><strong>Mã Phòng: </strong>@item.MaPhong</p>
+                                <p><strong>Mô Tả: </strong>@item.MoTa</p>
+                                <p><strong>Tình Trạng: </strong>@item.TinhTrang</p>
+                                <p><strong>Ghi Chú: </strong>@item.GhiChu</p>
+                                <p><strong>Tầng: </strong>@item.Tang</p>
+                                <p><strong>Giá phòng: </strong>@item.Gia</p>
+                                <div class="price_box">
+                                    <a href="">
+                                        Chi Tiết
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
     </div>
 </section>
 
