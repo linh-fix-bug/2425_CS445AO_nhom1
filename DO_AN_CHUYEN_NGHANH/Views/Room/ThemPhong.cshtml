@@ -1,0 +1,78 @@
+﻿@model DO_AN_CHUYEN_NGHANH.Models.Phong
+
+@{
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Phòng</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .form-control {
+            width: 100%; /* Đảm bảo các input và textarea chiếm toàn bộ chiều rộng */
+        }
+
+        .form-select {
+            width: 100%; /* Đảm bảo dropdown chiếm toàn bộ chiều rộng */
+        }
+
+        .mb-3 {
+            margin-bottom: 1.5rem; /* Tăng khoảng cách giữa các trường */
+        }
+
+        .container {
+            max-width: 800px; /* Giới hạn chiều rộng của form */
+        }
+
+        button[type="submit"] {
+            width: 100%; /* Đảm bảo nút "Thêm Phòng" chiếm toàn bộ chiều rộng */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Thêm Phòng</h2>
+        <form method="post" action="@Url.Action("ThemPhong", "Home")">
+            <div class="mb-3">
+                <label for="tenPhong" class="form-label">Mã phòng</label>
+                <input type="text" class="form-control" id="tenPhong" name="TenPhong" placeholder="Mã phòng" required>
+            </div>
+            <div class="mb-3">
+                <label for="moTa" class="form-label">Mô Tả</label>
+                <textarea class="form-control" id="moTa" name="MoTa" placeholder="Nhập mô tả phòng" rows="4" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="moTa" class="form-label">Ghi chú</label>
+                <textarea class="form-control" id="ghiChu" name="MoTa" placeholder="Ghi chú" rows="4" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="giaPhong" class="form-label">Giá Phòng</label>
+                <input type="number" class="form-control" id="giaPhong" name="Gia" placeholder="Nhập giá phòng" required>
+            </div>
+            <div class="mb-3">
+                <label for="tinhTrang" class="form-label">Tầng</label>
+                <select class="form-select" id="tinhTrang" name="TinhTrang" required>
+                    <option value="1">Tầng 1</option>
+                    <option value="2">Tầng 2</option>
+                    <option value="3">Tầng 3</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="tang" class="form-label">Tình trạng</label>
+                <input class="form-control" id="tang" name="Tang" placeholder="Tình trạng" required>
+            </div>
+            <div class="mb-3">
+                <label for="hinhAnh" class="form-label">Hình Ảnh</label>
+                <input type="file" class="form-control" id="hinhAnh" name="HinhAnh" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary">Thêm Phòng</button>
+        </form>
+    </div>
+
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -27,5 +27,7 @@ namespace DO_AN_CHUYEN_NGHANH.Models
     
         public virtual DbSet<Phong> Phongs { get; set; }
         public virtual DbSet<Tang> Tangs { get; set; }
+        public virtual DbSet<KhachHang> KhachHangs { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
     }
 }

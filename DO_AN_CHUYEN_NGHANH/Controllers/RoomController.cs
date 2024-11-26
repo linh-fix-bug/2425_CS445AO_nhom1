@@ -17,5 +17,9 @@ namespace DO_AN_CHUYEN_NGHANH.Controllers
             var danhsach = db.Phongs.ToList();
             return View(danhsach);
         }
+        public ActionResult ThemPhong()
+        {
+            return View();
+        }
     }
 }

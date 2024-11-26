@@ -8,6 +8,9 @@
         <EntityTypeShape EntityType="QUANLYPHONGTROModel.Phong" Width="2" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QUANLYPHONGTROModel.Tang" Width="1.5" PointX="0.75" PointY="5.25" />
         <AssociationConnector Association="QUANLYPHONGTROModel.FK__Phong__Tang__398D8EEE" />
+        <EntityTypeShape EntityType="QUANLYPHONGTROModel.KhachHang" Width="1.5" PointX="5.625" PointY="3" />
+        <EntityTypeShape EntityType="QUANLYPHONGTROModel.TaiKhoan" Width="1.5" PointX="3.375" PointY="3.375" />
+        <AssociationConnector Association="QUANLYPHONGTROModel.FK__KhachHang__TenTa__3E52440B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

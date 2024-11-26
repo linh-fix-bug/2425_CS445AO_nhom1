@@ -35,24 +35,29 @@
             </div>
         </form>
 
+
         <div class="row">
             @foreach (var item in Model)
             {
                 <div class="col-md-6 col-lg-4">
-
                     <div class="box">
                         <div class="img-box">
                             <img src="@item.HinhAnh" alt="Phòng Đơn" />
                         </div>
                         <div class="detail-box">
-                            <p><strong>Mã Phòng: </strong>@item.MaPhong</p>
+                            <!-- Mã Phòng (Ẩn) -->
+                            <p class="hidden"><strong>Mã Phòng: </strong>@item.MaPhong</p>
+
                             <p><strong>Mô Tả: </strong>@item.MoTa</p>
                             <p><strong>Tình Trạng: </strong>@item.TinhTrang</p>
-                            <p><strong>Ghi Chú: </strong>@item.GhiChu</p>
+
+                            <!-- Ghi Chú (Ẩn) -->
+                            <p class="hidden"><strong>Ghi Chú: </strong>@item.GhiChu</p>
+
                             <p><strong>Tầng: </strong>@item.Tang</p>
-                            <p><strong>Giá phòng: </strong>@item.Gia</p>
+                            <p><strong>Giá phòng: </strong>@string.Format("{0:N0}", @item.Gia) VNĐ</p>
                             <div class="price_box">
-                                <a href="">
+                                <a href="@Url.Action("XemChiTiet", "Home", new { maphong = item.MaPhong })">
                                     Chi Tiết
                                 </a>
                             </div>
@@ -61,6 +66,15 @@
                 </div>
             }
         </div>
+        <div class="row">
+            <a href="~/Room/ThemPhong" class="btn btn-success">Thêm phòng</a>
+        </div>
+        <style>
+
+            .hidden {
+                display: none;
+            }
+        </style>
     </div>
 </section>
 

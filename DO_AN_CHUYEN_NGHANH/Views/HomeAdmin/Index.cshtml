@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+    var user = (DO_AN_CHUYEN_NGHANH.Models.TaiKhoan)System.Web.HttpContext.Current.Session["user"];
+}
+
+<h2>@user.TenTaiKhoan</h2>
+

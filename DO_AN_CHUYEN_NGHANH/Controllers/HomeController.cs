@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.Mvc;
 using DO_AN_CHUYEN_NGHANH.Models;
@@ -49,8 +51,27 @@ namespace DO_AN_CHUYEN_NGHANH.Controllers
 
             return View(danhSachPhong); // Trả về danh sách phòng sau khi lọc
         }
+        public ActionResult XemChiTiet(int? maphong)
+        {
+            if (maphong == null)
+            {
+                TempData["ErrorMessage"] = "Vui lòng chọn một phòng để xem chi tiết!";
+                return RedirectToAction("DanhSachPhong", "Home");
+            }
 
+            using (var db = new QUANLYPHONGTROEntities())
+            {
+                var phong = db.Phongs.FirstOrDefault(p => p.MaPhong == maphong.Value);
 
+                if (phong == null)
+                {
+                    TempData["ErrorMessage"] = "Không tìm thấy phòng có mã: " + maphong;
+                    return RedirectToAction("DanhSachPhong", "Home");
+                }
+
+                return View(phong);
+            }
+        }
 
     }
 }
