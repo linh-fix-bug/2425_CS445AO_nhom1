@@ -17,9 +17,29 @@ namespace DO_AN_CHUYEN_NGHANH.Controllers
             var danhsach = db.Phongs.ToList();
             return View(danhsach);
         }
-        public ActionResult ThemPhong()
+
+        public ActionResult ThemPhong(Phong model)
         {
-            return View();
+            // Kiểm tra dữ liệu có hợp lệ không trước khi xử lý
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Dữ liệu nhập vào không hợp lệ.");
+                return View(model);
+            }
+
+            // Gọi lớp Map để thêm mới phòng
+            Map map = new Map();
+            if (map.ThemMoi(model))
+            {
+                TempData["SuccessMessage"] = "Thêm phòng thành công!";
+                return View();
+            }
+            else
+            {
+                ModelState.AddModelError("", map.message); // Thêm thông báo lỗi từ Map
+                return View(model);
+            }
         }
+
     }
 }
