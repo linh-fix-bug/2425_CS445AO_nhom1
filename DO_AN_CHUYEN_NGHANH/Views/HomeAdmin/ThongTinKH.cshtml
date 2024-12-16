@@ -1,1 +1,41 @@
-﻿
+﻿@model List<DO_AN_CHUYEN_NGHANH.Models.KhachHang>
+@{
+    ViewBag.Title = "ThongTinKH";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+
+
+<h2>Thông tin đặt phòng</h2>
+
+<div class="container mt-4">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th><h5>Họ và tên</h5></th>
+                <th><h5>Số điện thoại</h5></th>
+                <th><h5>Quê quán</h5></th>
+                <th><h5>Giới tính</h5></th>
+                <th style="width: 25%;"><h5>Gmail</h5></th>
+                <th><h5>Đặt phòng</h5></th>
+                <th><h5>Ảnh bill</h5></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in new DO_AN_CHUYEN_NGHANH.Models.MapKhach().dsKhachHang())
+            {
+                <tr>
+                    <td>@item.HoVaTen</td>
+                    <td>@item.SoDienThoai</td>
+                    <td>@item.QueQuan</td>
+                    <td>@item.GioiTinh</td>
+                    <td>@item.TenTaiKhoan</td>
+                    <td>@item.PhongDat</td>
+                    <td>
+                        <img src="~/images/@item.HinhAnh" alt="Hình khách hàng" class="img-fluid" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
