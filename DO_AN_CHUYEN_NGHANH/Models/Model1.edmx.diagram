@@ -4,13 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f89e31944592418a85c4e89eb7c0614b" Name="Diagram1">
-        <EntityTypeShape EntityType="QUANLYPHONGTROModel.Phong" Width="2" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QUANLYPHONGTROModel.Tang" Width="1.5" PointX="0.75" PointY="5.25" />
-        <AssociationConnector Association="QUANLYPHONGTROModel.FK__Phong__Tang__398D8EEE" />
-        <EntityTypeShape EntityType="QUANLYPHONGTROModel.KhachHang" Width="1.5" PointX="5.625" PointY="3" />
-        <EntityTypeShape EntityType="QUANLYPHONGTROModel.TaiKhoan" Width="1.5" PointX="3.375" PointY="3.375" />
-        <AssociationConnector Association="QUANLYPHONGTROModel.FK__KhachHang__TenTa__3E52440B" />
+      <Diagram DiagramId="e72eddef9713483880f99c9159e29e01" Name="Diagram1">
+        <EntityTypeShape EntityType="QUANLYPHONGTROModel.KhachHang" Width="1.5" PointX="7.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYPHONGTROModel.Phong" Width="1.5" PointX="3.375" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYPHONGTROModel.TaiKhoan" Width="1.5" PointX="3.375" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYPHONGTROModel.Tang" Width="1.5" PointX="1.125" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="QUANLYPHONGTROModel.FK__KhachHang__TenTa__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYPHONGTROModel.FK__Phong__Tang__398D8EEE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QUANLYPHONGTROModel.Phi" Width="1.5" PointX="6.25" PointY="0.5" />
+        <AssociationConnector Association="QUANLYPHONGTROModel.FK__Phi__Phong__412EB0B6" />
+        <EntityTypeShape EntityType="QUANLYPHONGTROModel.PhongDaDat" Width="1.5" PointX="8.875" PointY="1.5" />
+        <AssociationConnector Association="QUANLYPHONGTROModel.FK__PhongDaDa__MaKha__6FE99F9F" />
+        <AssociationConnector Association="QUANLYPHONGTROModel.FK__PhongDaDa__MaPho__70DDC3D8" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

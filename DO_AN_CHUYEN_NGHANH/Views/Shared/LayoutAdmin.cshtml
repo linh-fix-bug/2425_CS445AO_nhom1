@@ -29,7 +29,11 @@
     <link href="~/css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="~/css/responsive.css" rel="stylesheet" />
-
+    <style>
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -47,26 +51,34 @@
                     <span class=""> </span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
-                        <ul class="navbar-nav  ">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="~/HomeKhach">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="~/About/Users">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="~/RoomUsers">Room</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="~/Blog/Users">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="~/Contact/Users">Contact Us</a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/HomeAdmin/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/About/Index">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Room/Index">Room</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Blog/Index">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Contact/Index">Contact Us</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="managementDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Management
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="managementDropdown">
+                                <a class="dropdown-item" href="~/HomeAdmin/ThongTinKH">Manage Bookings</a>
+                                <a class="dropdown-item" href="~/HomeAdmin/QuanLyTaiKhoan">Manage Accounts</a>
+                                <a class="dropdown-item" href="~/HomeAdmin/CustomerFeedback">Customer Feedback</a>
+                            </div>
+                        </li>
+                    </ul>
                     <div class="quote_btn-container">
                         <span>@((Session["user"] as DO_AN_CHUYEN_NGHANH.Models.TaiKhoan)?.TenTaiKhoan)</span>
 
@@ -83,7 +95,6 @@
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </a>
                         }
-
                     </div>
                 </div>
             </nav>

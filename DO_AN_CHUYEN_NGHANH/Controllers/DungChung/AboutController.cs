@@ -6,10 +6,14 @@ using System.Web.Mvc;
 
 namespace DO_AN_CHUYEN_NGHANH.Controllers
 {
-    public class HomeAdminController : Controller
+    public class AboutController : Controller
     {
-        // GET: HomeAdmin
+        // GET: About
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Users()
         {
             return View();
         }

@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
 }
 <div style="text-align: center; font-family: Arial, sans-serif; margin: 20px;">
     <h2 style="color: #333;">Liên hệ với chúng tôi qua:</h2>
@@ -30,45 +30,47 @@
     <p style="color: #555; margin-top: 20px;">Nhấp vào biểu tượng để liên hệ với chúng tôi.</p>
 </div>
 
-    <section class="contact_section  long_section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form_container">
-                        <div class="heading_container">
-                            <h2>
-                                Contact Us
-                            </h2>
-                        </div>
-                        <form action="">
-                            <div>
-                                <input type="text" placeholder="Your Name" />
-                            </div>
-                            <div>
-                                <input type="text" placeholder="Phone Number" />
-                            </div>
-                            <div>
-                                <input type="email" placeholder="Email" />
-                            </div>
-                            <div>
-                                <input type="text" class="message-box" placeholder="Message" />
-                            </div>
-                            <div class="btn_box">
-                                <button>
-                                    SEND
-                                </button>
-                            </div>
-                        </form>
+
+
+<section class="contact_section  long_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form_container">
+                    <div class="heading_container">
+                        <h2>
+                            Contact Us
+                        </h2>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="map_container">
-                        <div class="map">
-                            <div id="googleMap"></div>
+                    <form action="">
+                        <div>
+                            <input type="text" placeholder="Your Name" />
                         </div>
+                        <div>
+                            <input type="text" placeholder="Phone Number" />
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Email" />
+                        </div>
+                        <div>
+                            <input type="text" class="message-box" placeholder="Message" />
+                        </div>
+                        <div class="btn_box">
+                            <button>
+                                SEND
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="map_container">
+                    <div class="map">
+                        <div id="googleMap"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 

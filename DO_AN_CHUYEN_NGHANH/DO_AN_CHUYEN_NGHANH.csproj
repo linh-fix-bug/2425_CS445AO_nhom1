@@ -115,6 +115,7 @@
     <Content Include="images\cobancong.jpg" />
     <Content Include="images\decoration-img.png" />
     <Content Include="images\fevicon.png" />
+    <Content Include="images\maQR.png" />
     <Content Include="images\menu.png" />
     <Content Include="images\offer-img.png" />
     <Content Include="images\phong1nguoi.jpg" />
@@ -148,21 +149,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AboutController.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
-    <Compile Include="Controllers\DangKiController.cs" />
-    <Compile Include="Controllers\HomeAdminController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\HomeKhachController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\RoomController.cs" />
+    <Compile Include="Controllers\DungChung\AboutController.cs" />
+    <Compile Include="Controllers\DungChung\BlogController.cs" />
+    <Compile Include="Controllers\DungChung\ContactController.cs" />
+    <Compile Include="Controllers\DungChung\DangKiController.cs" />
+    <Compile Include="Controllers\Admin\HomeAdminController.cs" />
+    <Compile Include="Controllers\DungChung\HomeController.cs" />
+    <Compile Include="Controllers\Users\HomeKhachController.cs" />
+    <Compile Include="Controllers\DungChung\LoginController.cs" />
+    <Compile Include="Controllers\Admin\RoomController.cs" />
+    <Compile Include="Controllers\Users\RoomUsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\KhachHang.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MapKhach.cs" />
     <Compile Include="Models\mapTaiKhoan.cs" />
     <Compile Include="Models\MapTang.cs" />
     <Compile Include="Models\Map.cs" />
@@ -181,7 +184,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Phi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Phong.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PhongDaDat.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaiKhoan.cs">
@@ -213,14 +222,28 @@
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\Shared\LayoutUser.cshtml" />
+    <Content Include="Views\Shared\LayoutAdmin.cshtml" />
     <Content Include="Views\Home\Timkiem.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\XemChiTiet.cshtml" />
-    <Content Include="Views\DangKi\Index.cshtml" />
     <Content Include="Views\HomeAdmin\Index.cshtml" />
     <Content Include="Views\HomeKhach\Index.cshtml" />
     <Content Include="Views\Room\ThemPhong.cshtml" />
+    <Content Include="Views\Room\CapNhat.cshtml" />
+    <Content Include="Views\DangKi\Index.cshtml" />
+    <Content Include="Views\Shared\LayoutUser.cshtml" />
+    <Content Include="Views\RoomUsers\Index.cshtml" />
+    <Content Include="Views\Shared\LayoutKhachVangLai.cshtml" />
+    <Content Include="Views\HomeAdmin\Timkiem.cshtml" />
+    <Content Include="Views\HomeAdmin\XemChiTiet.cshtml" />
+    <Content Include="Views\About\Users.cshtml" />
+    <Content Include="Views\Blog\Users.cshtml" />
+    <Content Include="Views\Contact\Users.cshtml" />
+    <Content Include="Views\HomeKhach\ThongTin.cshtml" />
+    <Content Include="Views\HomeAdmin\ThongTinKH.cshtml" />
+    <Content Include="Views\HomeAdmin\QuanLyTaiKhoan.cshtml" />
+    <Content Include="Views\HomeAdmin\ThemTaiKhoan.cshtml" />
+    <Content Include="Views\HomeAdmin\SuaTaiKhoan.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

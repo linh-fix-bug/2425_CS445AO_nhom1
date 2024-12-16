@@ -14,13 +14,23 @@ namespace DO_AN_CHUYEN_NGHANH.Models
     
     public partial class KhachHang
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KhachHang()
+        {
+            this.PhongDaDats = new HashSet<PhongDaDat>();
+        }
+    
         public int MaKhachHang { get; set; }
         public string HoVaTen { get; set; }
         public string SoDienThoai { get; set; }
         public string QueQuan { get; set; }
         public string GioiTinh { get; set; }
         public string TenTaiKhoan { get; set; }
+        public string HinhAnh { get; set; }
+        public string PhongDat { get; set; }
     
         public virtual TaiKhoan TaiKhoan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhongDaDat> PhongDaDats { get; set; }
     }
 }

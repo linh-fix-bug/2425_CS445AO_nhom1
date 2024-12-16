@@ -14,14 +14,26 @@ namespace DO_AN_CHUYEN_NGHANH.Models
     
     public partial class Phong
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Phong()
+        {
+            this.Phis = new HashSet<Phi>();
+            this.PhongDaDats = new HashSet<PhongDaDat>();
+        }
+    
         public int MaPhong { get; set; }
         public string HinhAnh { get; set; }
-        public string MoTa { get; set; }
+        public string TenPhong { get; set; }
         public string TinhTrang { get; set; }
         public string GhiChu { get; set; }
         public Nullable<decimal> Gia { get; set; }
         public Nullable<int> Tang { get; set; }
+        public Nullable<System.DateTime> NgayChoThue { get; set; }
     
         public virtual Tang Tang1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Phi> Phis { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhongDaDat> PhongDaDats { get; set; }
     }
 }

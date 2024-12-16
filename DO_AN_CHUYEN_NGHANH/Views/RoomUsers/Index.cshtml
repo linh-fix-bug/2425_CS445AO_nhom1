@@ -1,0 +1,91 @@
+﻿@model List<DO_AN_CHUYEN_NGHANH.Models.Phong>
+@{
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+
+
+
+<section class="furniture_section layout_padding">
+    <div class="container">
+        <div class="heading_container">
+            <h2>
+                Quản Lý Phòng Trọ
+            </h2>
+            <p>
+                Dễ dàng quản lý thông tin phòng trọ, tình trạng thuê, giá cả và các tiện ích liên quan.
+            </p>
+        </div>
+        <form action="~/Home/Timkiem" method="get">
+            <div class="filter-dropdown">
+                <label for="floor-filter">Lọc:</label>
+                <select id="floor-filter" class="form-select" name="idTang">
+                    <option value="0">Tất cả</option>
+                    @foreach (var item in new DO_AN_CHUYEN_NGHANH.Models.MapTang().dsTang())
+                    {
+                        <option value="@item.SoTang">Tầng @item.SoTang</option>
+                    }
+                </select>
+                <select id="floor-filter" class="form-select" name="idGia">
+                    <option value="0">Tất cả</option>
+                    <option value="1">1-2 triệu</option>
+                    <option value="2">2-3 triệu</option>
+                    <option value="3">3-4 triệu</option>
+                </select>
+                <button>Tìm kiếm</button>
+            </div>
+        </form>
+
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="@item.HinhAnh" alt="Phòng Đơn" />
+                        </div>
+                        <div class="detail-box">
+
+                            <p class="hidden"><strong>Mã Phòng: </strong>@item.MaPhong</p>
+
+                            <p><strong>Mô Tả: </strong>@item.TenPhong</p>
+                            <p><strong>Tình Trạng: </strong>@item.TinhTrang</p>
+
+                            <p class="hidden"><strong>Ghi Chú: </strong>@item.GhiChu</p>
+
+                            <p><strong>Tầng: </strong>@item.Tang</p>
+                            <p><strong>Giá phòng: </strong>@string.Format("{0:N0}", @item.Gia) VNĐ</p>
+                            <div class="price_box">
+                                <a href="@Url.Action("XemChiTiet", "Home", new { maphong = item.MaPhong })">
+                                    Chi Tiết
+                                </a>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>       
+        <style>
+
+            .hidden {
+                display: none;
+            }
+
+            .action-buttons {
+                margin-top: 10px;
+                display: flex;
+                gap: 10px;
+            }
+
+                .action-buttons .btn {
+                    padding: 5px 10px;
+                    text-align: center;
+                }
+        </style>
+    </div>
+</section>
+
+
+
+
+

@@ -6,10 +6,14 @@ using System.Web.Mvc;
 
 namespace DO_AN_CHUYEN_NGHANH.Controllers
 {
-    public class ContactController : Controller
+    public class BlogController : Controller
     {
-        // GET: Contact
+        // GET: Blog
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Users()
         {
             return View();
         }

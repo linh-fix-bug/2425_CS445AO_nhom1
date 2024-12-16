@@ -13,10 +13,10 @@ namespace DO_AN_CHUYEN_NGHANH.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QUANLYPHONGTROEntities : DbContext
+    public partial class QUANLYPHONGTROEntities1 : DbContext
     {
-        public QUANLYPHONGTROEntities()
-            : base("name=QUANLYPHONGTROEntities")
+        public QUANLYPHONGTROEntities1()
+            : base("name=QUANLYPHONGTROEntities1")
         {
         }
     
@@ -25,9 +25,11 @@ namespace DO_AN_CHUYEN_NGHANH.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Phong> Phongs { get; set; }
-        public virtual DbSet<Tang> Tangs { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
+        public virtual DbSet<Phong> Phongs { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
+        public virtual DbSet<Tang> Tangs { get; set; }
+        public virtual DbSet<Phi> Phis { get; set; }
+        public virtual DbSet<PhongDaDat> PhongDaDats { get; set; }
     }
 }

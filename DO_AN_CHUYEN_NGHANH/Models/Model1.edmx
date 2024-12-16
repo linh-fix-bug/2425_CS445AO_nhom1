@@ -9,12 +9,23 @@
           <Key>
             <PropertyRef Name="MaKhachHang" />
           </Key>
-          <Property Name="MaKhachHang" Type="int" Nullable="false" />
+          <Property Name="MaKhachHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HoVaTen" Type="nvarchar" MaxLength="255" />
-          <Property Name="SoDienThoai" Type="varchar" MaxLength="15" />
+          <Property Name="SoDienThoai" Type="nvarchar" MaxLength="20" />
           <Property Name="QueQuan" Type="nvarchar" MaxLength="255" />
-          <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
           <Property Name="TenTaiKhoan" Type="varchar" MaxLength="50" />
+          <Property Name="HinhAnh" Type="nvarchar" MaxLength="255" />
+          <Property Name="PhongDat" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Phi">
+          <Key>
+            <PropertyRef Name="MaHoaDon" />
+          </Key>
+          <Property Name="MaHoaDon" Type="int" Nullable="false" />
+          <Property Name="TienPhi" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Phong" Type="int" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Phong">
           <Key>
@@ -22,11 +33,21 @@
           </Key>
           <Property Name="MaPhong" Type="int" Nullable="false" />
           <Property Name="HinhAnh" Type="varchar" MaxLength="255" />
-          <Property Name="MoTa" Type="nvarchar" MaxLength="255" />
+          <Property Name="TenPhong" Type="nvarchar" MaxLength="255" />
           <Property Name="TinhTrang" Type="nvarchar" MaxLength="255" />
           <Property Name="GhiChu" Type="nvarchar" MaxLength="255" />
           <Property Name="Gia" Type="decimal" Precision="10" Scale="0" />
           <Property Name="Tang" Type="int" />
+          <Property Name="NgayChoThue" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PhongDaDat">
+          <Key>
+            <PropertyRef Name="MaPhongDaDat" />
+          </Key>
+          <Property Name="MaPhongDaDat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaKhachHang" Type="int" Nullable="false" />
+          <Property Name="MaPhong" Type="int" Nullable="false" />
+          <Property Name="NgayDat" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -41,6 +62,149 @@
           </Key>
           <Property Name="SoTang" Type="int" Nullable="false" />
           <Property Name="SoLuongPhong" Type="int" />
+        </EntityType>
+        <Association Name="FK__KhachHang__TenTa__628FA481">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Principal>
+            <Dependent Role="KhachHang">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Phi__Phong__412EB0B6">
+          <End Role="Phong" Type="Self.Phong" Multiplicity="0..1" />
+          <End Role="Phi" Type="Self.Phi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phong">
+              <PropertyRef Name="MaPhong" />
+            </Principal>
+            <Dependent Role="Phi">
+              <PropertyRef Name="Phong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Phong__Tang__398D8EEE">
+          <End Role="Tang" Type="Self.Tang" Multiplicity="0..1" />
+          <End Role="Phong" Type="Self.Phong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tang">
+              <PropertyRef Name="SoTang" />
+            </Principal>
+            <Dependent Role="Phong">
+              <PropertyRef Name="Tang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PhongDaDa__MaKha__6FE99F9F">
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PhongDaDat" Type="Self.PhongDaDat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="MaKhachHang" />
+            </Principal>
+            <Dependent Role="PhongDaDat">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PhongDaDa__MaPho__70DDC3D8">
+          <End Role="Phong" Type="Self.Phong" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PhongDaDat" Type="Self.PhongDaDat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phong">
+              <PropertyRef Name="MaPhong" />
+            </Principal>
+            <Dependent Role="PhongDaDat">
+              <PropertyRef Name="MaPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYPHONGTROModelStoreContainer">
+          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phi" EntityType="Self.Phi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phong" EntityType="Self.Phong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhongDaDat" EntityType="Self.PhongDaDat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tang" EntityType="Self.Tang" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__KhachHang__TenTa__628FA481" Association="Self.FK__KhachHang__TenTa__628FA481">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="KhachHang" EntitySet="KhachHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Phi__Phong__412EB0B6" Association="Self.FK__Phi__Phong__412EB0B6">
+            <End Role="Phong" EntitySet="Phong" />
+            <End Role="Phi" EntitySet="Phi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Phong__Tang__398D8EEE" Association="Self.FK__Phong__Tang__398D8EEE">
+            <End Role="Tang" EntitySet="Tang" />
+            <End Role="Phong" EntitySet="Phong" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PhongDaDa__MaKha__6FE99F9F" Association="Self.FK__PhongDaDa__MaKha__6FE99F9F">
+            <End Role="KhachHang" EntitySet="KhachHang" />
+            <End Role="PhongDaDat" EntitySet="PhongDaDat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PhongDaDa__MaPho__70DDC3D8" Association="Self.FK__PhongDaDa__MaPho__70DDC3D8">
+            <End Role="Phong" EntitySet="Phong" />
+            <End Role="PhongDaDat" EntitySet="PhongDaDat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QUANLYPHONGTROModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="MaKhachHang" />
+          </Key>
+          <Property Name="MaKhachHang" Type="Int32" Nullable="false" />
+          <Property Name="HoVaTen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="QueQuan" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TenTaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__KhachHang__TenTa__3E52440B" FromRole="KhachHang" ToRole="TaiKhoan" />
+          <Property Name="HinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PhongDat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PhongDaDats" Relationship="QUANLYPHONGTROModel.FK__PhongDaDa__MaKha__6FE99F9F" FromRole="KhachHang" ToRole="PhongDaDat" />
+        </EntityType>
+        <EntityType Name="Phong">
+          <Key>
+            <PropertyRef Name="MaPhong" />
+          </Key>
+          <Property Name="MaPhong" Type="Int32" Nullable="false" />
+          <Property Name="HinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TenPhong" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TinhTrang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Gia" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="Tang" Type="Int32" />
+          <Property Name="NgayChoThue" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tang1" Relationship="Self.FK__Phong__Tang__398D8EEE" FromRole="Phong" ToRole="Tang" />
+          <NavigationProperty Name="Phis" Relationship="QUANLYPHONGTROModel.FK__Phi__Phong__412EB0B6" FromRole="Phong" ToRole="Phi" />
+          <NavigationProperty Name="PhongDaDats" Relationship="QUANLYPHONGTROModel.FK__PhongDaDa__MaPho__70DDC3D8" FromRole="Phong" ToRole="PhongDaDat" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="TenTaiKhoan" />
+          </Key>
+          <Property Name="TenTaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KhachHangs" Relationship="Self.FK__KhachHang__TenTa__3E52440B" FromRole="TaiKhoan" ToRole="KhachHang" />
+        </EntityType>
+        <EntityType Name="Tang">
+          <Key>
+            <PropertyRef Name="SoTang" />
+          </Key>
+          <Property Name="SoTang" Type="Int32" Nullable="false" />
+          <Property Name="SoLuongPhong" Type="Int32" />
+          <NavigationProperty Name="Phongs" Relationship="Self.FK__Phong__Tang__398D8EEE" FromRole="Tang" ToRole="Phong" />
         </EntityType>
         <Association Name="FK__KhachHang__TenTa__3E52440B">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
@@ -66,100 +230,92 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QUANLYPHONGTROModelStoreContainer">
-          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Phong" EntityType="Self.Phong" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tang" EntityType="Self.Tang" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__KhachHang__TenTa__3E52440B" Association="Self.FK__KhachHang__TenTa__3E52440B">
-            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
-            <End Role="KhachHang" EntitySet="KhachHang" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Phong__Tang__398D8EEE" Association="Self.FK__Phong__Tang__398D8EEE">
-            <End Role="Tang" EntitySet="Tang" />
-            <End Role="Phong" EntitySet="Phong" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="QUANLYPHONGTROModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Phong">
-          <Key>
-            <PropertyRef Name="MaPhong" />
-          </Key>
-          <Property Name="MaPhong" Type="Int32" Nullable="false" />
-          <Property Name="HinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="MoTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="TinhTrang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Gia" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="Tang" Type="Int32" />
-          <NavigationProperty Name="Tang1" Relationship="QUANLYPHONGTROModel.FK__Phong__Tang__398D8EEE" FromRole="Phong" ToRole="Tang" />
-        </EntityType>
-        <EntityContainer Name="QUANLYPHONGTROEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QUANLYPHONGTROEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
           <EntitySet Name="Phongs" EntityType="Self.Phong" />
-          <EntitySet Name="Tangs" EntityType="QUANLYPHONGTROModel.Tang" />
-          <AssociationSet Name="FK__Phong__Tang__398D8EEE" Association="QUANLYPHONGTROModel.FK__Phong__Tang__398D8EEE">
-            <End Role="Tang" EntitySet="Tangs" />
-            <End Role="Phong" EntitySet="Phongs" />
-          </AssociationSet>
-          <EntitySet Name="KhachHangs" EntityType="QUANLYPHONGTROModel.KhachHang" />
-          <EntitySet Name="TaiKhoans" EntityType="QUANLYPHONGTROModel.TaiKhoan" />
-          <AssociationSet Name="FK__KhachHang__TenTa__3E52440B" Association="QUANLYPHONGTROModel.FK__KhachHang__TenTa__3E52440B">
+          <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+          <EntitySet Name="Tangs" EntityType="Self.Tang" />
+          <AssociationSet Name="FK__KhachHang__TenTa__3E52440B" Association="Self.FK__KhachHang__TenTa__3E52440B">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="KhachHang" EntitySet="KhachHangs" />
           </AssociationSet>
+          <AssociationSet Name="FK__Phong__Tang__398D8EEE" Association="Self.FK__Phong__Tang__398D8EEE">
+            <End Role="Tang" EntitySet="Tangs" />
+            <End Role="Phong" EntitySet="Phongs" />
+          </AssociationSet>
+          <EntitySet Name="Phis" EntityType="QUANLYPHONGTROModel.Phi" />
+          <AssociationSet Name="FK__Phi__Phong__412EB0B6" Association="QUANLYPHONGTROModel.FK__Phi__Phong__412EB0B6">
+            <End Role="Phong" EntitySet="Phongs" />
+            <End Role="Phi" EntitySet="Phis" />
+          </AssociationSet>
+          <EntitySet Name="PhongDaDats" EntityType="QUANLYPHONGTROModel.PhongDaDat" />
+          <AssociationSet Name="FK__PhongDaDa__MaKha__6FE99F9F" Association="QUANLYPHONGTROModel.FK__PhongDaDa__MaKha__6FE99F9F">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="PhongDaDat" EntitySet="PhongDaDats" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PhongDaDa__MaPho__70DDC3D8" Association="QUANLYPHONGTROModel.FK__PhongDaDa__MaPho__70DDC3D8">
+            <End Role="Phong" EntitySet="Phongs" />
+            <End Role="PhongDaDat" EntitySet="PhongDaDats" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Tang">
+        <EntityType Name="Phi">
           <Key>
-            <PropertyRef Name="SoTang" />
+            <PropertyRef Name="MaHoaDon" />
           </Key>
-          <Property Name="SoTang" Type="Int32" Nullable="false" />
-          <Property Name="SoLuongPhong" Type="Int32" />
-          <NavigationProperty Name="Phongs" Relationship="QUANLYPHONGTROModel.FK__Phong__Tang__398D8EEE" FromRole="Tang" ToRole="Phong" />
+          <Property Name="MaHoaDon" Type="Int32" Nullable="false" />
+          <Property Name="TienPhi" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Phong" Type="Int32" />
+          <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Phong1" Relationship="QUANLYPHONGTROModel.FK__Phi__Phong__412EB0B6" FromRole="Phi" ToRole="Phong" />
         </EntityType>
-        <Association Name="FK__Phong__Tang__398D8EEE">
-          <End Type="QUANLYPHONGTROModel.Tang" Role="Tang" Multiplicity="0..1" />
-          <End Type="QUANLYPHONGTROModel.Phong" Role="Phong" Multiplicity="*" />
+        <Association Name="FK__Phi__Phong__412EB0B6">
+          <End Type="QUANLYPHONGTROModel.Phong" Role="Phong" Multiplicity="0..1" />
+          <End Type="QUANLYPHONGTROModel.Phi" Role="Phi" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Tang">
-              <PropertyRef Name="SoTang" />
+            <Principal Role="Phong">
+              <PropertyRef Name="MaPhong" />
             </Principal>
-            <Dependent Role="Phong">
-              <PropertyRef Name="Tang" />
+            <Dependent Role="Phi">
+              <PropertyRef Name="Phong" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="KhachHang">
+        <EntityType Name="PhongDaDat">
           <Key>
-            <PropertyRef Name="MaKhachHang" />
+            <PropertyRef Name="MaPhongDaDat" />
           </Key>
+          <Property Name="MaPhongDaDat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaKhachHang" Type="Int32" Nullable="false" />
-          <Property Name="HoVaTen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="SoDienThoai" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="QueQuan" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TenTaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TaiKhoan" Relationship="QUANLYPHONGTROModel.FK__KhachHang__TenTa__3E52440B" FromRole="KhachHang" ToRole="TaiKhoan" />
+          <Property Name="MaPhong" Type="Int32" Nullable="false" />
+          <Property Name="NgayDat" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="KhachHang" Relationship="QUANLYPHONGTROModel.FK__PhongDaDa__MaKha__6FE99F9F" FromRole="PhongDaDat" ToRole="KhachHang" />
+          <NavigationProperty Name="Phong" Relationship="QUANLYPHONGTROModel.FK__PhongDaDa__MaPho__70DDC3D8" FromRole="PhongDaDat" ToRole="Phong" />
         </EntityType>
-        <EntityType Name="TaiKhoan">
-          <Key>
-            <PropertyRef Name="TenTaiKhoan" />
-          </Key>
-          <Property Name="TenTaiKhoan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MatKhau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="KhachHangs" Relationship="QUANLYPHONGTROModel.FK__KhachHang__TenTa__3E52440B" FromRole="TaiKhoan" ToRole="KhachHang" />
-        </EntityType>
-        <Association Name="FK__KhachHang__TenTa__3E52440B">
-          <End Type="QUANLYPHONGTROModel.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1" />
-          <End Type="QUANLYPHONGTROModel.KhachHang" Role="KhachHang" Multiplicity="*" />
+        <Association Name="FK__PhongDaDa__MaKha__6FE99F9F">
+          <End Type="QUANLYPHONGTROModel.KhachHang" Role="KhachHang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="QUANLYPHONGTROModel.PhongDaDat" Role="PhongDaDat" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TaiKhoan">
-              <PropertyRef Name="TenTaiKhoan" />
+            <Principal Role="KhachHang">
+              <PropertyRef Name="MaKhachHang" />
             </Principal>
-            <Dependent Role="KhachHang">
-              <PropertyRef Name="TenTaiKhoan" />
+            <Dependent Role="PhongDaDat">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PhongDaDa__MaPho__70DDC3D8">
+          <End Type="QUANLYPHONGTROModel.Phong" Role="Phong" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="QUANLYPHONGTROModel.PhongDaDat" Role="PhongDaDat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phong">
+              <PropertyRef Name="MaPhong" />
+            </Principal>
+            <Dependent Role="PhongDaDat">
+              <PropertyRef Name="MaPhong" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -168,45 +324,68 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QUANLYPHONGTROModelStoreContainer" CdmEntityContainer="QUANLYPHONGTROEntities">
+        <EntityContainerMapping StorageEntityContainer="QUANLYPHONGTROModelStoreContainer" CdmEntityContainer="QUANLYPHONGTROEntities1">
+          <EntitySetMapping Name="KhachHangs">
+            <EntityTypeMapping TypeName="QUANLYPHONGTROModel.KhachHang">
+              <MappingFragment StoreEntitySet="KhachHang">
+                <ScalarProperty Name="PhongDat" ColumnName="PhongDat" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="QueQuan" ColumnName="QueQuan" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Phongs">
             <EntityTypeMapping TypeName="QUANLYPHONGTROModel.Phong">
               <MappingFragment StoreEntitySet="Phong">
                 <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="TenPhong" ColumnName="TenPhong" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
                 <ScalarProperty Name="Gia" ColumnName="Gia" />
                 <ScalarProperty Name="Tang" ColumnName="Tang" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tangs">
-            <EntityTypeMapping TypeName="QUANLYPHONGTROModel.Tang">
-              <MappingFragment StoreEntitySet="Tang">
-                <ScalarProperty Name="SoLuongPhong" ColumnName="SoLuongPhong" />
-                <ScalarProperty Name="SoTang" ColumnName="SoTang" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="KhachHangs">
-            <EntityTypeMapping TypeName="QUANLYPHONGTROModel.KhachHang">
-              <MappingFragment StoreEntitySet="KhachHang">
-                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
-                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
-                <ScalarProperty Name="QueQuan" ColumnName="QueQuan" />
-                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
-                <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
-                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="NgayChoThue" ColumnName="NgayChoThue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TaiKhoans">
             <EntityTypeMapping TypeName="QUANLYPHONGTROModel.TaiKhoan">
               <MappingFragment StoreEntitySet="TaiKhoan">
-                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
                 <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tangs">
+            <EntityTypeMapping TypeName="QUANLYPHONGTROModel.Tang">
+              <MappingFragment StoreEntitySet="Tang">
+                <ScalarProperty Name="SoTang" ColumnName="SoTang" />
+                <ScalarProperty Name="SoLuongPhong" ColumnName="SoLuongPhong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phis">
+            <EntityTypeMapping TypeName="QUANLYPHONGTROModel.Phi">
+              <MappingFragment StoreEntitySet="Phi">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="Phong" ColumnName="Phong" />
+                <ScalarProperty Name="TienPhi" ColumnName="TienPhi" />
+                <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhongDaDats">
+            <EntityTypeMapping TypeName="QUANLYPHONGTROModel.PhongDaDat">
+              <MappingFragment StoreEntitySet="PhongDaDat">
+                <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="MaPhongDaDat" ColumnName="MaPhongDaDat" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
