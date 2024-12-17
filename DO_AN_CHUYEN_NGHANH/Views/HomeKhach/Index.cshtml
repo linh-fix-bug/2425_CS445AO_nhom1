@@ -1,1 +1,343 @@
-﻿
+﻿@model List<DO_AN_CHUYEN_NGHANH.Models.Phong>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+<section class="slider_section long_section">
+    <div id="customCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="detail-box">
+                                <h1>
+                                    Xin Chào bạn <br>
+                                    Chào mừng bạn đã đến phòng trọ chúng tôi
+                                </h1>
+                                <p>
+                                    Chào mừng bạn đến với hệ thống quản lý phòng trọ thông minh! Nền tảng giúp bạn theo dõi thông tin khách thuê, quản lý hợp đồng, và tối ưu hóa chi phí vận hành một cách dễ dàng.
+                                </p>
+                                <div class="btn-box">
+                                    <a href="" class="btn1">
+                                        Liên Hệ
+                                    </a>
+                                    <a href="" class="btn2">
+                                        Giới Thiệu
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="img-box">
+                                <img src="~/images/slider-img.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="detail-box">
+                                <h1>
+                                    Các yêu lợi ích <br>
+                                    bên chúng tôi
+                                </h1>
+                                <p>
+                                    An ninh tốt: Khu vực an toàn, có biện pháp bảo vệ.
+                                </p>
+                                <div class="btn-box">
+                                    <a href="" class="btn1">
+                                        Contact Us
+                                    </a>
+                                    <a href="" class="btn2">
+                                        About Us
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="img-box">
+                                <img src="~/images/slider-img.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="detail-box">
+                                <h1>
+                                    Chúng tôi mong muốn <br>
+                                    những yếu tố từ bạn
+                                </h1>
+                                <p>
+                                    Ý thức tốt: giữ vệ sinh, không gây ồn ào.
+                                </p>
+                                <div class="btn-box">
+                                    <a href="" class="btn1">
+                                        Contact Us
+                                    </a>
+                                    <a href="" class="btn2">
+                                        About Us
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="img-box">
+                                <img src="~/images/slider-img.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ol class="carousel-indicators">
+            <li data-target="#customCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#customCarousel" data-slide-to="1"></li>
+            <li data-target="#customCarousel" data-slide-to="2"></li>
+        </ol>
+    </div>
+</section>
+
+
+<section class="furniture_section layout_padding">
+    <div class="container">
+        <div class="heading_container">
+            <h2>
+                Quản Lý Phòng Trọ
+            </h2>
+            <p>
+                Dễ dàng quản lý thông tin phòng trọ, tình trạng thuê, giá cả và các tiện ích liên quan.
+            </p>
+        </div>
+        <form action="~/Home/Timkiem" method="get">
+            <div class="filter-dropdown">
+                <label for="floor-filter">Lọc:</label>
+                <!-- Dropdown chọn tầng -->
+                <select id="floor-filter" class="form-select" name="idTang">
+                    <option value="0" @(ViewBag.idTang == null || ViewBag.idTang == 0 ? "selected" : "")>Tất cả tầng</option>
+                    @foreach (var item in new DO_AN_CHUYEN_NGHANH.Models.MapTang().dsTang())
+                    {
+                        <option value="@item.SoTang" @(ViewBag.idTang == item.SoTang ? "selected" : "")>Tầng @item.SoTang</option>
+                    }
+                </select>
+
+                <!-- Dropdown chọn giá -->
+                <select id="price-filter" class="form-select" name="idGia">
+                    <option value="0" @(ViewBag.idGia == null || ViewBag.idGia == 0 ? "selected" : "")>Tất cả giá</option>
+                    <option value="1" @(ViewBag.idGia == 1 ? "selected" : "")>1-2 triệu</option>
+                    <option value="2" @(ViewBag.idGia == 2 ? "selected" : "")>2-3 triệu</option>
+                    <option value="3" @(ViewBag.idGia == 3 ? "selected" : "")>3-4 triệu</option>
+                </select>
+                <!-- Nút Tìm kiếm -->
+                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+            </div>
+        </form>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="@item.HinhAnh" alt="Phòng Đơn" />
+                        </div>
+                        <div class="detail-box">
+                            <!-- Mã Phòng (Ẩn) -->
+                            <p class="hidden"><strong>Mã Phòng: </strong>@item.MaPhong</p>
+
+                            <p><strong>Tên Phòng: </strong>@item.TenPhong</p>
+                            <p><strong>Tình Trạng: </strong>@item.TinhTrang</p>
+
+                            <!-- Ghi Chú (Ẩn) -->
+                            <p class="hidden"><strong>Ghi Chú: </strong>@item.GhiChu</p>
+
+                            <p><strong>Tầng: </strong>@item.Tang</p>
+                            <p><strong>Giá phòng: </strong>@string.Format("{0:N0}", @item.Gia) VNĐ</p>
+                            <div class="price_box">
+                                <a href="@Url.Action("XemChiTiet", "Home", new { maphong = item.MaPhong })">
+                                    Chi Tiết
+                                </a>
+                            </div>
+
+                            <div class="back-button">
+                                <a href="~/HomeKhach/ThongTin" class="btn">Đặt phòng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <style>
+
+            .hidden {
+                display: none;
+            }
+
+            .back-button {
+                margin-top: 20px;
+                text-align: center;
+            }
+
+                .back-button .btn {
+                    text-decoration: none;
+                    padding: 10px 20px;
+                    background-color: #007bff;
+                    color: white;
+                    border-radius: 5px;
+                    border: none;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                }
+
+                    .back-button .btn:hover {
+                        background-color: #0056b3;
+                    }
+        </style>
+
+
+    </div>
+</section>
+
+
+<section class="client_section layout_padding-bottom">
+    <div class="container">
+        <div class="heading_container">
+            <h2>
+                Đánh Giá Khách Hàng
+            </h2>
+        </div>
+        <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-11 col-lg-10 mx-auto">
+                            <div class="box">
+                                <div class="img-box">
+                                    <img src="images/client.jpg" alt="" />
+                                </div>
+                                <div class="detail-box">
+                                    <div class="name">
+                                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                        <h6>
+                                            Nguyễn Văn A
+                                        </h6>
+                                    </div>
+                                    <p>
+                                        Tôi rất hài lòng với hệ thống quản lý phòng trọ. Giao diện thân thiện, dễ sử dụng và giúp tôi theo dõi công việc hàng ngày dễ dàng hơn.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-11 col-lg-10 mx-auto">
+                            <div class="box">
+                                <div class="img-box">
+                                    <img src="images/client.jpg" alt="" />
+                                </div>
+                                <div class="detail-box">
+                                    <div class="name">
+                                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                        <h6>
+                                            Trần Thị B
+                                        </h6>
+                                    </div>
+                                    <p>
+                                        Hệ thống giúp tôi tiết kiệm rất nhiều thời gian quản lý và giảm thiểu các sai sót trong việc tính toán chi phí thuê phòng.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-11 col-lg-10 mx-auto">
+                            <div class="box">
+                                <div class="img-box">
+                                    <img src="images/client.jpg" alt="" />
+                                </div>
+                                <div class="detail-box">
+                                    <div class="name">
+                                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                        <h6>
+                                            Phạm Văn C
+                                        </h6>
+                                    </div>
+                                    <p>
+                                        Đội ngũ hỗ trợ rất nhiệt tình và chuyên nghiệp. Tôi cảm thấy yên tâm hơn khi sử dụng dịch vụ quản lý phòng trọ này.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel_btn-container">
+                <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev">
+                    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExample2Controls" role="button" data-slide="next">
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- end client section -->
+<!-- contact section -->
+<section class="contact_section  long_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form_container">
+                    <div class="heading_container">
+                        <h2>
+                            Contact Us
+                        </h2>
+                    </div>
+                    <form action="">
+                        <div>
+                            <input type="text" placeholder="Your Name" />
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Phone Number" />
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Email" />
+                        </div>
+                        <div>
+                            <input type="text" class="message-box" placeholder="Message" />
+                        </div>
+                        <div class="btn_box">
+                            <button>
+                                SEND
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="map_container">
+                    <div class="map">
+                        <div id="googleMap"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
