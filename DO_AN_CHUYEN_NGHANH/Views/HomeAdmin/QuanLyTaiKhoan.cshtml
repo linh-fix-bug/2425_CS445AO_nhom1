@@ -1,1 +1,51 @@
-﻿
+﻿@{
+    ViewBag.Title = "QuanLyTaiKhoan";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>Quản lý tài khoản</h2>
+
+<div class="container mt-4">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            alert('@TempData["SuccessMessage"]');
+        </script>
+    }
+    else if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            alert('@TempData["ErrorMessage"]');
+        </script>
+    }
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th><h5>Tài khoản</h5></th>
+                <th><h5>Mật khẩu</h5></th>
+                <th><h5>Lựa chọn</h5></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in new DO_AN_CHUYEN_NGHANH.Models.mapTaiKhoan().DSTaiKhoan())
+            {
+                <tr>
+                    <td>@item.TenTaiKhoan</td>
+                    <td>@item.MatKhau</td>
+                    <td>
+                        <a href="@Url.Action("SuaTaiKhoan", "HomeAdmin", new { tenTaiKhoan = item.TenTaiKhoan })" class="btn btn-warning btn-sm mx-1">Sửa</a>
+
+                        <a href="@Url.Action("Xoa", "HomeAdmin", new { tenTaiKhoan = item.TenTaiKhoan })"
+                           class="btn btn-danger btn-sm mx-1"
+                           onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');">
+                            Xóa
+                        </a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="~/HomeAdmin/ThemTaiKhoan" class="btn btn-primary mt-3">Thêm</a>
+</div>
