@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -71,6 +72,11 @@ namespace DO_AN_CHUYEN_NGHANH.Controllers
                 return View(phong);
             }
         }
+        public ActionResult ThongTin()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult ThongTin(KhachHang model, HttpPostedFileBase HinhAnh)
         {
             if (ModelState.IsValid)
@@ -102,13 +108,14 @@ namespace DO_AN_CHUYEN_NGHANH.Controllers
 
                             
                             model.HinhAnh = "/images/" + fileName;
+                        }                        
+                        if ( !Regex.IsMatch(model.SoDienThoai, @"^[0-9]{10}$"))
+                        {
+                            ViewBag.thongbao = "Số điện thoại phải đúng định dạng";
+                            return View("ThongTin", model);
                         }
-
-                        
                         db.KhachHangs.Add(model);
-                        db.SaveChanges();
-
-                       
+                        db.SaveChanges();                       
                         ViewBag.thongbao = "Thêm khách hàng thành công!";
                         return RedirectToAction(""); 
                     }
